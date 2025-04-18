@@ -1,5 +1,7 @@
 export const createCourse=(req,res)=>{
-    console.log("course created")
+    const {title,description,price,image}=req.body;
+    console.log(title);
+   
     
 
 }
