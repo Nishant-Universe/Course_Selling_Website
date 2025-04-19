@@ -15,8 +15,14 @@ const courseSchema=new mongoose.Schema({
     }
     ,
     image:{
-        type:String,
-        required:true,
-    }
+        public_id:{
+            type: String,
+            required:"true",
+        },
+        url:{
+            type:String,
+            require:true,
+        },
+    },
 })
 export const Course=mongoose.model("Course",courseSchema);
