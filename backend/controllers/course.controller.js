@@ -11,7 +11,7 @@ export const createCourse=async(req,res)=>{
             return res.status(400).json({errors:"no file uploaded"})
 
         }
-        const allowedFormat=["image/png","image.jpeg"]
+        const allowedFormat=["image/png","image/jpeg"]
         if(!allowedFormat.includes(image.mimetype)){
             return res.status(400).json({errors:"invalid file format only jpeg and png are supported"})
         }
@@ -45,7 +45,50 @@ export const createCourse=async(req,res)=>{
         }
 
 
+ };
+
+ export const updateCourse=async(req,res)=>{
+    const{courseId}=req.params;
+    const{title,description,price,image}=req.body;
+    try{
+        const course=await Course.updateOne({
+            _id : courseId,
+        },{
+            title,
+            description,
+            price,
+            image:{
+                public_id:image?.public_id ||course.image.public_id,
+                url:image?.url,
+
+            },
+        })
+        res.json({message:"course updated sucessfully"})
+
+    }catch(error){
+        res.status(201).json({message:"error in course updating"})
+       console.log("Error in course updating",error) 
     }
+ };
+ export const  deleteCourse=async(req,res)=>{
+    const {courseId}=req.params;
+    try{
+       const course=await Course.findByIdAndDelete({
+        _id:courseId,
+       })
+       if(!course){
+        return res.status(404).json({errors:"course not found"})
+       }
+       res.status(200).json({message:"Course deleted successfully"});
+
+    }catch(error){
+        res.status(500).json({errors:"Error in course deleting"});
+        console.log("error in course deletion",error);
+
+    }
+
+
+ }
    
     
 
