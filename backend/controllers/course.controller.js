@@ -89,6 +89,38 @@ export const createCourse=async(req,res)=>{
 
 
  }
+
+ export const getcourses=async(req,res)=>{
+    try{
+        const courses=await Course.find({})
+            res.status(201).json({courses})
+        
+    }catch(error){
+        res.status(500).json({error:"Error in getting courses"})
+        console.log("error to get courses",error);
+    }
+
+ };
+
+ export const coursedetails=async(req,res)=>{
+    const {courseId}=req.params;
+try{
+    const course=await Course.findById(courseId);
+    if(!course){
+        return res.status(404).json({error:"course not found"});
+    }
+    res.status(200).json({ course });
+
+}catch(error){
+    res.status(500).json({errors:"error in course getting details"})
+console.log("error in course creating");
+}
+ };
+ export const buyCourses=async(req,res)=>{
+    
+ }
+
+
    
     
 
