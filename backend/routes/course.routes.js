@@ -9,5 +9,5 @@ router.put("/update/:courseId",updateCourse);
 router.delete("/delete/:courseId",deleteCourse);
 router.get("/courses",getcourses);
 router.get("/:courseId", coursedetails);
-router.get("/buy/:courseId",userMiddelware ,buyCourses)
+router.post("/buy/:courseId",userMiddelware ,buyCourses)
 export default router;
