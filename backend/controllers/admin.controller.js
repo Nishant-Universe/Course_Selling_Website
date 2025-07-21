@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import z from "zod";
 import jwt from "jsonwebtoken";
 import config from "../config.js";
-
+//admin Controller
 //signup function
 export const signup=async(req,res)=>{
     try{//validation code
