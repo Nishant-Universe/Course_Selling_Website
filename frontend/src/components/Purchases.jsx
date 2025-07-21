@@ -12,7 +12,7 @@ import { HiMenu, HiX } from "react-icons/hi"; // Import menu and close icons
 
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
+//purchases UI
 function Purchases() {
    const [purchase, setPurchase] = useState([]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
